@@ -117,7 +117,7 @@ const Form = () => {
             >
               Close
             </Button>
-            <Button color="primary" type="submit" isLoading={isSubmitLoading}>
+            <Button color="warning" type="submit" isLoading={isSubmitLoading}>
               {!isObjectNull(updateData) ? "Update" : "Create"}
             </Button>
           </div>

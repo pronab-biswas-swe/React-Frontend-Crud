@@ -39,8 +39,8 @@
 				}
 
 				@include menu-link-default-state(
-					$title-color: var(--kt-light-active),
-					$icon-color: var(--kt-light-active),
+					$title-color: var(--kt-black),
+					$icon-color: var(--kt-black),
 					$bullet-color: #787887,
 					$arrow-color: #787887,
 					$bg-color: null
@@ -51,7 +51,7 @@
 					$icon-color: var(--kt-primary-inverse),
 					$bullet-color: var(--kt-primary-inverse),
 					$arrow-color: var(--kt-primary-inverse),
-					$bg-color: var(--kt-input-btn-focus-color)
+					$bg-color: var(--kt-warning)
 				);
 
 				@include menu-link-here-state(
@@ -76,7 +76,7 @@
 					$bullet-color: var(--kt-primary-inverse),
 					$arrow-color: var(--kt-primary-inverse),
 					// $bg-color: $app-sidebar-dark-menu-link-bg-color-active
-					$bg-color: var(--kt-ribbon-label-border-color)
+					$bg-color: var(--kt-warning)
 				);
 			}
 		}

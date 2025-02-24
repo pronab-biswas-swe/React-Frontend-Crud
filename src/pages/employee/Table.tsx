@@ -1,5 +1,5 @@
-import { Dropdown, DropdownItem } from "@components/Dropdown";
-import Icon from "@components/Icon";
+import FrontendPagination from "@components/FrontendPagination";
+import IconButton from "@components/IconButton";
 import {
   ITableHeadColumn,
   Table,
@@ -10,7 +10,6 @@ import { FC, useContext, useState } from "react";
 import { toAbsoluteUrl } from "utility/make-slug";
 import { generateRowNumBn } from "utility/utils";
 import { EmployeeContext } from ".";
-import { Form, Pagination } from "react-bootstrap";
 
 const columns: ITableHeadColumn[] = [
   { title: "SL No", minWidth: 50 },
@@ -25,7 +24,7 @@ const columns: ITableHeadColumn[] = [
 const EmployeeTable: FC = () => {
   const { listData, handleUpdate, handleDelete } = useContext(EmployeeContext);
 
-  // / Pagination state
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
 
@@ -38,18 +37,17 @@ const EmployeeTable: FC = () => {
     currentPage * itemsPerPage
   );
 
-  // Handle items per page change
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setItemsPerPage(Number(event.target.value));
+  // Handle page and items per page change
+  const handlePageChange = (page: number) => setCurrentPage(page);
+  const handleItemsPerPageChange = (items: number) => {
+    setItemsPerPage(items);
     setCurrentPage(1); // Reset to first page when changing items per page
   };
 
   if (!listData?.length) return;
   return (
     <>
-      <Table columns={columns}>
+      <Table columns={columns} tableHover>
         {paginatedData?.map((listData, i) => {
           return (
             <TableRow key={i}>
@@ -66,7 +64,7 @@ const EmployeeTable: FC = () => {
               />
               <TableCell isActive={listData?.isActive || false} />
               <TableCell textAlign="end">
-                <Dropdown
+                {/* <Dropdown
                   btnIcon={true}
                   btnContent={<Icon icon="more_vert" size={20} />}
                 >
@@ -87,7 +85,22 @@ const EmployeeTable: FC = () => {
                     <Icon size={19} icon="delete" color="danger" />
                     <h6 className="mb-0 ms-3 text-danger">Delete</h6>
                   </DropdownItem>
-                </Dropdown>
+                </Dropdown> */}
+                <IconButton
+                  iconName="edit"
+                  onClick={() => {
+                    handleUpdate(listData);
+                  }}
+                  color="warning"
+                />
+                <IconButton
+                  iconName="delete"
+                  className="ms-2"
+                  onClick={() => {
+                    handleDelete(listData);
+                  }}
+                  color="danger"
+                />
               </TableCell>
             </TableRow>
           );
@@ -95,47 +108,13 @@ const EmployeeTable: FC = () => {
       </Table>
 
       {/* Pagination Component */}
-      <div className="d-flex justify-content-between align-items-center mt-3">
-        <Pagination className="mb-0">
-          <Pagination.Prev
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          />
-          {[...Array(totalPages)].map((_, index) => (
-            <Pagination.Item
-              key={index}
-              active={index + 1 === currentPage}
-              onClick={() => setCurrentPage(index + 1)}
-            >
-              {index + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          />
-        </Pagination>
-
-        {/* Items per page selection */}
-        <Form.Group
-          controlId="itemsPerPage"
-          className="d-flex align-items-center"
-        >
-          <Form.Label className="me-2 mb-0">Items per page:</Form.Label>
-          <Form.Select
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            style={{ width: "100px" }}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </Form.Select>
-        </Form.Group>
-      </div>
+      <FrontendPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        itemsPerPage={itemsPerPage}
+        onPageChange={handlePageChange}
+        onItemsPerPageChange={handleItemsPerPageChange}
+      />
     </>
   );
 };

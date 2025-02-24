@@ -25,7 +25,7 @@ const ContentPreloader = ({
 
 	return (
 		<div
-			className="text-primary shadow-lg"
+			className="text-warning shadow-lg"
 			style={{ ...styles, position: "absolute", textAlign: "center" }}
 		>
 			<Spinner text={loaderText ? loaderText : "Processing..."} />

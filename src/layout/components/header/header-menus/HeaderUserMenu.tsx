@@ -14,7 +14,7 @@ const HeaderUserMenu: FC<HeaderUserMenuProps> = ({ logout }) => {
       <div className="menu-item px-3"></div>
 
       <div className="menu-item px-5">
-        <a onClick={logout} className="menu-link px-5">
+        <a onClick={logout} className="menu-link text-hover-warning px-5">
           <Icon icon="logout" size={20} className="me-2" />
           Log Out
         </a>

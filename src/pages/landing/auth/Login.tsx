@@ -47,15 +47,9 @@ const Login: FC = () => {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="text-center mb-4">
-        <img
-          alt="Logo"
-          src={toAbsoluteUrl("/media/auth/employee.png")}
-          height={150}
-        />
-        <div className="mt-2">
-          <span className="fs-3 fw-bold text-primary">Employee Mangament</span>
-        </div>
+      <div className="text-center">
+        <h1 className="text-success mb-3">LOGIN</h1>
+        <hr />
       </div>
 
       <div className="fv-row mb-8">
@@ -63,6 +57,7 @@ const Login: FC = () => {
         <Input
           placeholder="Enter email"
           autoFocus
+          size="lg"
           startIcon={<Icon icon="person" />}
           isError={!!errors?.email}
           errorMessage={errors?.email?.message as string}
@@ -82,6 +77,7 @@ const Login: FC = () => {
         <Input
           placeholder="Enter password"
           type="password"
+          size="lg"
           startIcon={<Icon icon="lock" />}
           isError={!!errors?.password}
           errorMessage={errors?.password?.message as string}
@@ -89,7 +85,7 @@ const Login: FC = () => {
         />
       </div>
       <div className="d-grid my-5">
-        <Button type="submit" color="primary" isLoading={loading}>
+        <Button type="submit" color="success" isLoading={loading}>
           <strong className="fs-5">Login</strong>
         </Button>
       </div>

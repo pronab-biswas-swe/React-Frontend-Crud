@@ -85,7 +85,8 @@ const EmployeeList = () => {
       .then((res) => {
         setListData(res?.data || []);
       })
-      .catch((err) => toast.error(err?.message))
+      // .catch((err) => toast.error(err?.message))
+      .catch((err) => console.log(err?.message))
       .finally(() => {
         setIsLoading(false);
       });
@@ -191,7 +192,12 @@ const EmployeeList = () => {
     <>
       <PageTitle>Employee List</PageTitle>
       <PageToolbarRight>
-        <Button color="primary" onClick={() => setIsDrawerOpen(true)}>
+        <Button
+          color="warning"
+          // variant="light"
+          // type="button"
+          onClick={() => setIsDrawerOpen(true)}
+        >
           Add Employee
         </Button>
       </PageToolbarRight>

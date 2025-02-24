@@ -23,7 +23,7 @@ const SidebarLogo = () => {
     <div className="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
       <Link
         to={EMPLOYEE}
-        className="d-flex align-items-center gap-3 fs-2 text-white"
+        className="d-flex align-items-center gap-3 fs-2 text-dark"
       >
         {config.layoutType === "dark-sidebar" ? (
           <img
@@ -50,7 +50,7 @@ const SidebarLogo = () => {
           src={toAbsoluteUrl("/media/auth/employee.png")}
           className="h-20px app-sidebar-logo-minimize"
         />
-        EMPLOYEE
+        BISWAS
       </Link>
 
       {(appSidebarDefaultMinimizeDesktopEnabled ||

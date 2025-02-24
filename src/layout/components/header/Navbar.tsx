@@ -28,7 +28,7 @@ const Navbar = () => {
         >
           <Thumb
             label="user-image"
-            imgSrc={toAbsoluteUrl("/media/avatars/blank.png")}
+            imgSrc={toAbsoluteUrl("/media/auth/employee.png")}
           />
         </div>
         <HeaderUserMenu logout={logout} />

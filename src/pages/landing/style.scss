@@ -25,6 +25,43 @@ v-stick {
   transform: scaleX(-1);
 }
 
-.home-height {
+.login-page {
   min-height: 100vh;
+  background-image: url("/media/images/background4.jpeg");
+  // linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-headlines {
+  opacity: 0;
+  animation: slideInRight 1s ease-in-out 0.5s forwards;
+}
+
+.login-card {
+  opacity: 0;
+  animation: slideInTop 1s ease-in-out 1s forwards;
 }

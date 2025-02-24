@@ -4,7 +4,7 @@ import { SidebarMenuItem } from "./SidebarMenuItem";
 const SidebarMenuMain = () => {
   return (
     <>
-      <SidebarMenuItem to={EMPLOYEE} title="Employee" fontIcon="group" />
+      <SidebarMenuItem to={EMPLOYEE} title="Employee List" fontIcon="group" />
     </>
   );
 };
