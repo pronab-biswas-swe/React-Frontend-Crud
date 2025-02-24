@@ -1,0 +1,12 @@
+@media only screen and (max-width: 500px) {
+	.g-recaptcha {
+		transform: scale(0.77);
+		transform-origin: 0 0;
+	}
+}
+
+.piecolor {
+	background:linear-gradient(135deg, #E3E3E3 0%,#5D6874 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

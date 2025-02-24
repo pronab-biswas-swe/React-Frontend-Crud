@@ -1,0 +1,98 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@casl/ability": "^6.3.1",
+    "@casl/react": "^3.1.0",
+    "@formatjs/intl-pluralrules": "4.3.3",
+    "@formatjs/intl-relativetimeformat": "^11.2.14",
+    "@hookform/resolvers": "^2.9.10",
+    "animate.css": "4.1.1",
+    "apexcharts": "^3.36.3",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "browser-image-compression": "^2.0.2",
+    "clsx": "^2.1.1",
+    "jwt-decode": "^3.1.2",
+    "material-icons": "^1.12.0",
+    "qs": "6.10.3",
+    "react": "18.2.0",
+    "react-apexcharts": "^1.4.0",
+    "react-bootstrap": "2.6.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.43.2",
+    "react-inlinesvg": "3.0.0",
+    "react-intl": "^6.6.8",
+    "react-router-dom": "^6.9.0",
+    "react-select": "^5.8.0",
+    "react-spinners-kit": "^1.9.1",
+    "react-toastify": "^9.1.1",
+    "sass": "1.55.0",
+    "stream": "^0.0.2",
+    "topbar": "^3.0.0",
+    "ua-parser-js": "^1.0.38",
+    "yup": "0.32.11"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/bootstrap": "^5.2.10",
+    "@types/chart.js": "2.9.37",
+    "@types/node": "^18.19.10",
+    "@types/qs": "6.9.7",
+    "@types/react": "^18.3.5",
+    "@types/react-copy-to-clipboard": "5.0.2",
+    "@types/react-datepicker": "^4.8.0",
+    "@types/react-dom": "18.0.2",
+    "@types/react-input-mask": "^3.0.2",
+    "@types/sass-loader": "8.0.3",
+    "@vitejs/plugin-react": "^4.2.1",
+    "css-loader": "6.7.1",
+    "del": "6.0.0",
+    "mini-css-extract-plugin": "2.6.1",
+    "prettier": "2.6.2",
+    "rtlcss-webpack-plugin": "4.0.7",
+    "sass-loader": "13.0.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.3",
+    "vite-plugin-checker": "^0.6.4",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.3.2",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "start:dev": "vite --mode dev",
+    "start:prod": "vite --mode prod",
+    "start:training": "vite --mode training",
+    "serve": "vite preview",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode dev",
+    "build:prod": "tsc && vite build --mode prod",
+    "build:training": "tsc && vite build --mode training"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintIgnore": [
+    "dist/*"
+  ]
+}

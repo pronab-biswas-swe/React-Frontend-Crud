@@ -1,0 +1,7 @@
+.badge-close {
+	transition: all 0.2s ease-in-out;
+	&:hover {
+		color: var(--kt-text-danger);
+		transform: scale(1.2);
+	}
+}

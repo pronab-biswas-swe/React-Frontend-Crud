@@ -1,0 +1,15 @@
+.copy-to-clipboard {
+  position: relative;
+
+  .copied {
+    position: absolute;
+    left: 0;
+    top: -100%;
+    background: #000;
+    padding: 2px 5px;
+    color: #ddd;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-top: -1%;
+  }
+}
