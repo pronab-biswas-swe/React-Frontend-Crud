@@ -1,30 +1,30 @@
 import FrontendPagination from "@components/FrontendPagination";
-import IconButton from "@components/IconButton";
 import {
   ITableHeadColumn,
   Table,
   TableCell,
   TableRow,
 } from "@components/Table";
-import { FC, useContext, useState } from "react";
-import { toAbsoluteUrl } from "utility/make-slug";
+import { IObject } from "@interface/common.interface";
+import { FC, useState } from "react";
 import { generateRowNumBn } from "utility/utils";
-import { EmployeeContext } from ".";
-import ACLWrapper from "@acl/ACLWrapper";
 
 const columns: ITableHeadColumn[] = [
   { title: "SL No", minWidth: 50 },
   { title: "Name", minWidth: 200 },
-  { title: "Salary", minWidth: 75 },
-  { title: "Age", minWidth: 75 },
-  { title: "Image", minWidth: 75 },
-  { title: "Active", minWidth: 75 },
-  { title: "Actions", align: "end" },
+  { title: "Email", minWidth: 100 },
+  { title: "Phone", minWidth: 100 },
+  { title: "Role", minWidth: 100 },
+  { title: "Location", minWidth: 75 },
+  // { title: "Image", minWidth: 75 },
+  // { title: "Actions", align: "end" },
 ];
 
-const EmployeeTable: FC = () => {
-  const { listData, handleUpdate, handleDelete } = useContext(EmployeeContext);
+type UserTableProps = {
+  listData?: IObject[];
+};
 
+const UserTable: FC<UserTableProps> = ({ listData }) => {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
@@ -53,19 +53,21 @@ const EmployeeTable: FC = () => {
           return (
             <TableRow key={i}>
               <TableCell text={generateRowNumBn(i)} />
-              <TableCell text={listData?.employee_name || "Not Assign"} />
-              <TableCell text={listData?.employee_salary || 0} />
-              <TableCell text={listData?.employee_age} />
-              <TableCell
+              <TableCell text={listData?.name || "Not Assign"} />
+              <TableCell text={listData?.email || 0} />
+              <TableCell text={listData?.phone || "Not Assign"} />
+              <TableCell text={listData?.role || "Not Assign"} />
+              <TableCell text={listData?.location || "Not Assign"} />
+              {/* <TableCell
                 hasImg
                 imgSrc={
                   listData?.profile_image ||
                   toAbsoluteUrl("media/avatars/employee1.png")
                 }
               />
-              <TableCell isActive={listData?.isActive || false} />
-              <TableCell textAlign="end">
-                {/* <Dropdown
+              <TableCell isActive={listData?.isActive || false} /> */}
+              {/* <TableCell textAlign="end"> */}
+              {/* <Dropdown
                   btnIcon={true}
                   btnContent={<Icon icon="more_vert" size={20} />}
                 >
@@ -87,26 +89,7 @@ const EmployeeTable: FC = () => {
                     <h6 className="mb-0 ms-3 text-danger">Delete</h6>
                   </DropdownItem>
                 </Dropdown> */}
-                <IconButton
-                  iconName="edit"
-                  onClick={() => {
-                    handleUpdate(listData);
-                  }}
-                  color="warning"
-                  hoverTitle="Edit"
-                />
-                <ACLWrapper visibleToRoles={["SUPER_ADMIN"]}>
-                  <IconButton
-                    iconName="delete"
-                    className="ms-2"
-                    onClick={() => {
-                      handleDelete(listData);
-                    }}
-                    color="danger"
-                    hoverTitle="Delete"
-                  />
-                </ACLWrapper>
-              </TableCell>
+              {/* </TableCell> */}
             </TableRow>
           );
         })}
@@ -124,4 +107,4 @@ const EmployeeTable: FC = () => {
   );
 };
 
-export default EmployeeTable;
+export default UserTable;

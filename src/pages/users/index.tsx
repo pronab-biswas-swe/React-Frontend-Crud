@@ -1,21 +1,17 @@
-import Button from "@components/Button";
 import { ConfirmationModal } from "@components/ConfirmationModal/ConfirmationModal";
 import { Input } from "@components/Input";
 import { NoData } from "@components/NoData";
 import ContentPreloader from "@components/Preloader/ContentPreloader";
-import { Select } from "@components/Select";
-import { PageTitle, PageToolbarRight } from "@context/PageData";
+import { PageTitle } from "@context/PageData";
 import { IObject } from "@interface/common.interface";
 import { DummyService } from "@services/api/dummy.service";
 import { toast } from "@services/utils/toast";
 import { createContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { employeeList, sortList } from "utility/data";
+import { users } from "utility/data";
 import { useDebounce } from "utility/debouncer";
 import { searchParamsToObject } from "utility/makeObject";
-import Form from "./From";
-import EmployeeTable from "./Table";
-import ACLWrapper from "@acl/ACLWrapper";
+import UserTable from "./Table";
 
 interface IEmployeeContext {
   isDrawerOpen?: boolean;
@@ -42,7 +38,7 @@ const initEmployeeContext = {
 export const EmployeeContext =
   createContext<IEmployeeContext>(initEmployeeContext);
 
-const EmployeeList = () => {
+const UsersList = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -50,7 +46,7 @@ const EmployeeList = () => {
   const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
   const [deleteData, setDeleteData] = useState<any>();
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
-  const [listData, setListData] = useState<any>(employeeList || []);
+  const [listData, setListData] = useState<any>(users || []);
   const [search, setSearch] = useState<string>(
     searchParams.get("searchKey") || ""
   );
@@ -69,11 +65,11 @@ const EmployeeList = () => {
 
   useEffect(() => {
     if (searchKey) {
-      let temp = employeeList?.filter((item: IObject) =>
-        item?.employee_name.toLowerCase().includes(searchKey.toLowerCase())
+      let temp = users?.filter((item: IObject) =>
+        item?.name.toLowerCase().includes(searchKey.toLowerCase())
       );
       setListData(temp);
-    } else setListData(employeeList);
+    } else setListData(users);
   }, [searchParams]);
 
   useEffect(() => {
@@ -176,23 +172,10 @@ const EmployeeList = () => {
       .finally(() => setIsSubmitLoading(false));
   };
 
-  const handleSort = (value: any) => {
-    let temp = [...listData];
-    if (value == 1)
-      temp.sort(function (a, b) {
-        return parseFloat(a.employee_salary) - parseFloat(b.employee_salary);
-      });
-    else if (value == 2)
-      temp.sort(function (a, b) {
-        return parseFloat(b.employee_salary) - parseFloat(a.employee_salary);
-      });
-    setListData(temp);
-  };
-
   return (
     <>
-      <PageTitle>Employee List</PageTitle>
-      <PageToolbarRight>
+      <PageTitle>Users List</PageTitle>
+      {/* <PageToolbarRight>
         <ACLWrapper visibleToRoles={["SUPER_ADMIN"]}>
           <Button
             color="warning"
@@ -203,7 +186,7 @@ const EmployeeList = () => {
             Add Employee
           </Button>
         </ACLWrapper>
-      </PageToolbarRight>
+      </PageToolbarRight> */}
       <div className="card p-5">
         <div className="d-flex gap-3">
           <Input
@@ -212,16 +195,6 @@ const EmployeeList = () => {
             placeholder="Search ..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-          />
-          <Select
-            isRequired
-            valueKey="value"
-            textKey="name"
-            placeholder="Salary"
-            options={sortList}
-            registerProperty={{
-              onChange: (e) => handleSort(e.target.value),
-            }}
           />
         </div>
 
@@ -238,24 +211,24 @@ const EmployeeList = () => {
           }}
         >
           <div className="mt-3">
-            <EmployeeTable
-            // data={listData}
-            // handleUpdate={handleUpdate}
-            // handleDelete={handleDelete}
-            ></EmployeeTable>
+            <UserTable
+              listData={listData}
+              // handleUpdate={handleUpdate}
+              // handleDelete={handleDelete}
+            />
             {isLoading && <ContentPreloader />}
             {!isLoading && !listData?.length && (
-              <NoData details="No Employee Data Found!" />
+              <NoData details="No User Data Found!" />
             )}
           </div>
 
-          <Form
-          // isOpen={isDrawerOpen}
-          // onClose={onDrawerClose}
-          // updateData={updateData}
-          // onSubmit={onSubmit}
-          // submitLoading={isSubmitLoading}
-          />
+          {/* <Form
+          isOpen={isDrawerOpen}
+          onClose={onDrawerClose}
+          updateData={updateData}
+          onSubmit={onSubmit}
+          submitLoading={isSubmitLoading}
+          /> */}
         </EmployeeContext.Provider>
       </div>
       <ConfirmationModal
@@ -272,4 +245,4 @@ const EmployeeList = () => {
     </>
   );
 };
-export default EmployeeList;
+export default UsersList;
